@@ -19,7 +19,13 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 
-RUN apk add --no-cache git && git init
+RUN apk add --no-cache git && \
+    git init && \
+    git config user.email "render@local.com" && \
+    git config user.name "Render" && \
+    git add . && \
+    git commit -m "init" && \
+    chown -R node:node /app/.git
 
 USER node
 WORKDIR /app
