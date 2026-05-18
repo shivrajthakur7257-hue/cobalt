@@ -19,7 +19,10 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 
+RUN git init
+
 USER node
+WORKDIR /app
 
 EXPOSE 9000
 CMD [ "node", "src/cobalt" ]
