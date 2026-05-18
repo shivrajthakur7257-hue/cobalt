@@ -19,7 +19,7 @@ WORKDIR /app
 
 COPY --from=build --chown=node:node /prod/api /app
 
-RUN git init
+RUN apk add --no-cache git && git init
 
 USER node
 WORKDIR /app
